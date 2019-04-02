@@ -20,6 +20,7 @@ public class AllExceptionHandler {
     @ExceptionHandler(value = GreenGroupException.class)
     public Msg<String> handleGreenGroupException(GreenGroupException gE){
         logger.error("catch an business exception: "+gE.getMsg());
+        gE.printStackTrace();
         return gE.getMsg();
     }
 
@@ -27,6 +28,7 @@ public class AllExceptionHandler {
     public Msg<String> handleException(Exception e){
         Msg<String> msg = new Msg<>(CodeInfo.EXCEPTION);
         msg.setData(e.getMessage());
+        e.printStackTrace();
         logger.error("catch an exception: "+e.getMessage());
         return msg;
     }

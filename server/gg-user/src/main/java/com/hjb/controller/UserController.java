@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * ClassName: UserController
  * Description:
@@ -27,18 +29,15 @@ public class UserController {
     @ApiOperation(value = "用户注册", notes = "注册绿小萌用户")
     @ApiImplicitParam(name = "userRegisterDto", value = "用户注册信息", dataType = "UserRegisterDto")
     @PostMapping("/register")
-    public Msg<String> register(@RequestBody UserRegisterDto userRegisterDto) {
-        Msg<String> result = new Msg<>(CodeInfo.SUCCESS);
-        userService.register(userRegisterDto);
-        return result;
+    public Msg<String> register(@RequestBody @Valid UserRegisterDto userRegisterDto) {
+        return userService.register(userRegisterDto);
     }
 
     @ApiOperation(value = "用户登录", notes = "登录绿小萌")
     @ApiImplicitParam(name = "userLoginDto", value = "用户登录信息", dataType = "UserLoginDto")
     @PostMapping("/login")
-    public Msg<String> login(@RequestBody UserLoginDto userLoginDto) {
-        Msg<String> result = new Msg<>(CodeInfo.SUCCESS);
-        return result;
+    public Msg<String> login(@RequestBody @Valid UserLoginDto userLoginDto) {
+        return userService.login(userLoginDto);
     }
 
     @GetMapping("/hello")

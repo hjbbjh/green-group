@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         ggUser.setHeadPicPath(config.getHeadDefaultPic());
         ggUser.setNickName("用户"+random.nextLong());
         ggUser.setUserState(UserState.NORMAL);
-        //ggUser.setRoles(userRegisterDto.getRoles());
+        ggUser.setRoles(userRegisterDto.getRoles());
         ggUserRepository.save(ggUser);
         Msg<String> keycloakCreateUserResult = keycloakAdminUtil.createUser(userRegisterDto);
         if(!keycloakCreateUserResult.checkSuccess()){

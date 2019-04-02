@@ -2,6 +2,7 @@ package com.hjb.dao.entity;
 
 import com.hjb.common.RoleType;
 import com.hjb.common.UserState;
+import com.hjb.utils.RoleTypeListConvert;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
@@ -40,7 +41,8 @@ public class GgUser {
     private Timestamp createTime;
     @LastModifiedDate
     private Timestamp updateTime;
-/*    @Column(nullable = false)
-    private List<RoleType> roles;*/
+    @Column(nullable = false)
+    @Convert(converter = RoleTypeListConvert.class)
+    private List<RoleType> roles;
 
 }
